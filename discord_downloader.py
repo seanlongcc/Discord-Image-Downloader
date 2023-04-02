@@ -13,26 +13,6 @@ def sanitize_name(name):
     return re.sub(r'[<>:"/\\|?*]', '-', name)
 
 
-# @client.event
-# async def on_message(message: discord.Message):
-#     image_types = ["png", "jpeg", "gif", "jpg", "mp4", "mov", "webp"]
-
-#     if message.channel.id == CHANNEL_ID:
-#         # new directory for the attachments
-#         sanitized_channel_name = sanitize_name(message.channel.name)
-#         sanitized_guild_name = sanitize_name(message.guild.name)
-#         channel_dir = f'{sanitized_guild_name} - {sanitized_channel_name}'
-#         os.makedirs(channel_dir, exist_ok=True)
-
-#         for attachment in message.attachments:
-#             if any(attachment.filename.lower().endswith(image) for image in image_types):
-
-#                 await attachment.save(f'{channel_dir}/{attachment.filename}')
-#                 print(
-#                     f'Server: {message.guild.name} (ID: {message.guild.id}) | '
-#                     f'Channel: {message.channel.name} (ID: {message.channel.id}) | '
-#                     f'Attachment {attachment.filename} has been saved to directory > {channel_dir}')
-
 @client.event
 async def on_message(message: discord.Message):
     image_types = ["png", "jpeg", "gif", "jpg", "mp4", "mov", "webp"]
