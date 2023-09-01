@@ -43,7 +43,7 @@ class DiscordImageDownloader():
                     print(
                         f'Server: {message.guild.name} (ID: {message.guild.id}) | '
                         f'Channel: {message.channel.name} (ID: {message.channel.id}) | '
-                        f'Attachment {new_filename} has been saved to directory > {channel_dir}')        
+                        f'Attachment {new_filename} has been saved to directory > {channel_dir}')
 
     async def download_attachments(self, GUILD_ID, CHANNEL_ID, start_date, end_date):
         guild = self.client.get_guild(GUILD_ID)
