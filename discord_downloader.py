@@ -13,6 +13,7 @@ class DiscordImageDownloader():
                                    guild_subscription_options=discord.GuildSubscriptionOptions.off())
         self.client.event(self.on_ready)
         self.client.event(self.on_message)
+        self.count = 0
 
     def sanitize_name(self, name):
         return re.sub(r'[<>:"/\\|?*]', '-', name)
@@ -38,10 +39,11 @@ class DiscordImageDownloader():
                         new_filename = f'{file_name}_{unix_time}{file_extension}'
 
                     await attachment.save(f'{channel_dir}/{new_filename}')
+                    self.count += 1
                     print(
                         f'Server: {message.guild.name} (ID: {message.guild.id}) | '
                         f'Channel: {message.channel.name} (ID: {message.channel.id}) | '
-                        f'Attachment {new_filename} has been saved to directory > {channel_dir}')
+                        f'Attachment {new_filename} has been saved to directory > {channel_dir}')        
 
     async def download_attachments(self, GUILD_ID, CHANNEL_ID, start_date, end_date):
         guild = self.client.get_guild(GUILD_ID)
@@ -56,6 +58,8 @@ class DiscordImageDownloader():
 
         async for message in channel.history(limit=None, after=start_date, before=end_date):
             await self.on_message(message)
+
+        print(f"Downloaded {self.count} images")
 
     async def userInfo(self):
         print('-' * 25)
